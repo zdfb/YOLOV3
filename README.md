@@ -19,7 +19,7 @@
 
 ## 测试结果
 + 路径修改<br>
-  修改utils/utils_yolo.py文件中的model_path及classes_path，指向训练好的模型参数及类别信息。
+  修改utils/utils_yolo.py文件中的model_path及classes_path，指向训练好的模型及类别信息。
 + 测试图片<br>
   修改predict_images.py文件下的输入图片路径，直接运行即可完成检测。
 
