@@ -2,7 +2,7 @@ import torch
 import numpy as np
 from nets.yolo import YoloBody
 from utils.utils_bbox import DecodeBox
-from PIL import ImageDraw
+from PIL import ImageDraw, ImageFont
 from utils.utils import cvtColor, get_anchors, get_classes, preprocess_input, resize_image, ncolors
 
 
@@ -70,6 +70,8 @@ class YOLO(object):
             top_boxes = results[0][:, :4]  # 预测框位置 (num_bbox, (ymin, xmin, ymax, xmax))
 
         # 绘制图像上的标注框
+        font_size = np.floor(2e-2 * image.size[1]).astype('int32')  # 定义字体大小
+        font = ImageFont.truetype(font = 'model_data/simhei.ttf', size=font_size)  # 定义字体样式
 
         for index, class_id in list(enumerate(top_label)):
             predicted_class = self.class_names[int(class_id)]  # 取出预测类别名称
@@ -92,13 +94,28 @@ class YOLO(object):
             draw = ImageDraw.Draw(image)
 
             # 获取标签区域大小
-            label_size = draw.textsize(label_text)
+            label_size = draw.textsize(label_text, font)
 
             # 绘制标签包围框
             draw.rectangle((xmin, ymin - label_size[1], xmin + label_size[0], ymin), fill = self.colors[class_id])
             # 绘制目标框
             draw.rectangle((xmin, ymin, xmax, ymax), outline = self.colors[class_id], width = 3)
             # 绘制标签
-            draw.text((xmin, ymin - label_size[1]), label_text, fill = (0, 0, 0))
+            draw.text((xmin, ymin - label_size[1]), label_text, fill = (255, 255, 255), font=font)
             del draw
         return image
+
+
+
+
+
+
+            
+
+
+
+        
+
+
+
+

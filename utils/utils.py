@@ -6,6 +6,7 @@ from PIL import Image
 
 ###### 功能：定义用到的一些工具函数 ######
 
+random.seed(30)  # 设置随机数种
 
 # 将输入图像统一为RGB形式
 def cvtColor(image):
@@ -76,6 +77,7 @@ def ncolors(num):
         _r, _g, _b = colorsys.hls_to_rgb(hlsc[0], hlsc[1], hlsc[2])
         r, g, b = [int(x * 255.0) for x in (_r, _g, _b)]
         rgb_colors.append((r, g, b))
+    random.shuffle(rgb_colors)
 
     return rgb_colors
 
