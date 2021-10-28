@@ -81,12 +81,6 @@ class YOLO(object):
 
             ymin, xmin, ymax, xmax = box  # 取出坐标详细信息
             
-            # 进行边界限制
-            ymin = max(0, np.floor(ymin).astype('int32'))
-            xmin = max(0, np.floor(xmin).astype('int32'))
-            ymax = min(image.size[0], np.floor(ymax).astype('int32'))
-            xmax = min(image.size[1], np.floor(xmax).astype('int32'))
-
             # 标签内容
             label_text = '{} {:.2f}'.format(predicted_class, score)
             

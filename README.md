@@ -1,7 +1,8 @@
 # YOLOV3 Pytorch实现
 在[bubbliiing](https://github.com/bubbliiiing/yolo3-pytorch)大佬代码的基础上进行了修改，添加了部分注释。
 
-![检测结果样例](result.jpg)
+![检测图片样例](Image_samples/result.jpg)
+![检测视频样例](Image_samples/person1.gif)
 
 ## 预训练模型
 预训练模型来源于bubbliiing。<br>
