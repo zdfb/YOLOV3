@@ -16,7 +16,7 @@ class train_yolo():
     def __init__(self):
         super(train_yolo, self).__init__()
 
-        classes_path = 'model_data/name_classes.txt'  # 类别存储路径
+        classes_path = 'model_data/coco_classes.txt'  # 类别存储路径
         anchors_path = 'model_data/yolo_anchors.txt'  # anchors保存路径
         model_path = 'model_data/yolo_weights.pth'  # 模型存储路径
         
