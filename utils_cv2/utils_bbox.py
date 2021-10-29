@@ -57,8 +57,8 @@ class DecodeBox():
             # 生成anchor的宽和高
             anchor_w = np.array(scaled_anchors)[:, 0].reshape(1, -1).transpose(1, 0)
             anchor_h = np.array(scaled_anchors)[:, 1].reshape(1, -1).transpose(1, 0)
-            anchor_w = anchor_w.repeat(input_height * input_width, axis=1).reshape(batch_size, len(self.anchors_mask[index]), input_width, input_height)
-            anchor_h = anchor_h.repeat(input_height * input_width, axis=1).reshape(batch_size, len(self.anchors_mask[index]), input_width, input_height)
+            anchor_w = anchor_w.repeat(input_height * input_width, axis=1).reshape(batch_size, len(self.anchors_mask[index]), input_height, input_width)
+            anchor_h = anchor_h.repeat(input_height * input_width, axis=1).reshape(batch_size, len(self.anchors_mask[index]), input_height, input_width)
             
             # 根据预测参数调整anchors的坐标及大小
             pred_boxes = np.zeros(prediction[..., :4].shape)
@@ -138,7 +138,7 @@ class DecodeBox():
 
             # 取得每个anchor置信率最大的种类及置信率
             class_conf = np.max(image_pred[:, 5:5 + num_classes], 1, keepdims=True)
-            class_pred = np.argmax(image_pred[:, 5:5 + num_classes], 1)
+            class_pred = np.argmax(image_pred[:, 5:5 + num_classes], 1).reshape(len(image_pred), -1)
 
             # 取得输出置信率大于置信率阈值的索引
             conf_mask = (image_pred[:, 4] * class_conf[:, 0] >= conf_thres)
@@ -146,7 +146,7 @@ class DecodeBox():
             # 取得经过初筛的anchor框
             image_pred = image_pred[conf_mask]
             class_conf = class_conf[conf_mask]
-            class_pred = class_pred[conf_mask].reshape(len(image_pred), -1)
+            class_pred = class_pred[conf_mask]
 
             if not image_pred.shape[0]:
                 continue
