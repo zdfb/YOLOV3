@@ -4,7 +4,6 @@ from PIL import Image
 from utils.utils_yolo import YOLO
 
 video_path = 'Image_samples/person1.avi'  # 测试视频路径  
-
 cap = cv2.VideoCapture(video_path)
 
 yolo = YOLO()
