@@ -105,21 +105,3 @@ if __name__ == '__main__':
     anchors = anchors[anchors_index]
     print(anchors)
     print("平均IOU：%.2f"%(avarage_iou))
-    
-    
-
-        
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
