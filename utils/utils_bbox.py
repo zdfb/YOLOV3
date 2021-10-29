@@ -151,8 +151,3 @@ class DecodeBox():
                 box_xy, box_wh = (output[index][:, 0:2] + output[index][:, 2:4]) / 2, output[index][:, 2:4] - output[index][:, 0:2]
                 output[index][:, :4] = self.yolo_correct_boxes(box_xy, box_wh, image_shape)
         return output
-
-
-
-
-            
