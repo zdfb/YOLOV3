@@ -3,9 +3,11 @@ import numpy as np
 from PIL import Image
 from utils.utils_yolo import YOLO
 
-yolo = YOLO()
+video_path = 'Image_samples/person1.avi'  # 测试视频路径  
 
-cap = cv2.VideoCapture('Image_samples/person1.avi')
+cap = cv2.VideoCapture(video_path)
+
+yolo = YOLO()
 
 while cap.isOpened():
     ret, frame = cap.read()
