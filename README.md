@@ -1,7 +1,7 @@
 # YOLOV3   pytorch + opencv
 在[bubbliiing](https://github.com/bubbliiiing/yolo3-pytorch)大佬代码的基础上进行了修改，添加了部分注释。增加了模型文件.pth格式转.onnx格式，并使用python-opencv读取。
 ## 图片检测demo
-<img src="Image_samples/result.jpg" >
+<img src="Image_samples/result.jpg" ><br>
 ## 视频检测demo
 <img src="Image_samples/person1.gif"  height="510" width="960">
 
