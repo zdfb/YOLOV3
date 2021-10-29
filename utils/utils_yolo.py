@@ -98,18 +98,3 @@ class YOLO(object):
             draw.text((xmin, ymin - label_size[1]), label_text, fill = (255, 255, 255), font=font)
             del draw
         return image
-
-
-
-
-
-
-            
-
-
-
-        
-
-
-
-
