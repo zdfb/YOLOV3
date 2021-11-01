@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 ###### 功能: 聚类产生9个尺寸的anchors ######
 
 num_anchors = 9  # 生成anchor的数量
-input_shape = [416, 416]  # 输入图片尺寸
+input_shape = [416, 416]  # 输入图片尺寸 前面是宽，后面是高
 VOCdevkit_path = 'VOCdevkit'  # VOC格式的数据集存储根目录 
 
 
@@ -94,7 +94,7 @@ def kmeans(bbox, k):
 if __name__ == '__main__':
     bbox = load_dataset()  # 读取数据
 
-    anchors = kmeans(bbox, k=9)  # 进行kmeans聚类
+    anchors = kmeans(bbox, k=num_anchors)  # 进行kmeans聚类
     avarage_iou = avg_iou(bbox, anchors)  # 计算平均IOU
 
     anchors = anchors * input_shape  # 转化为图像尺寸
