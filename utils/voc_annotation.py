@@ -1,7 +1,7 @@
 import os
 import random
 import xml.etree.ElementTree as ET
-from utils.utils import get_classes
+from utils import get_classes
 
 
 ###### 功能：用于读取及分割数据集 ######

@@ -98,3 +98,52 @@ class YOLO(object):
             draw.text((xmin, ymin - label_size[1]), label_text, fill = (255, 255, 255), font=font)
             del draw
         return image
+    
+    # 将输出结果写至txt内，便于计算mAP
+    def get_map_txt(self, image_id, image, map_out_path):
+        # 打开将要写入的txt文件
+        # 每张图片都写入一个txt文件内
+        f = open(os.path.join(map_out_path, "detection-results/" + image_id + ".txt"), 'w')
+
+        image_shape = np.array(np.shape(image)[0:2])  # 输入图像的宽和高
+        image = cvtColor(image)  # 将输入图片转化为RGB形式
+        image_data = resize_image(image, (self.input_shape[1], self.input_shape[0]))  # 缩放图像至模型要求尺寸  
+        image_data = np.expand_dims(np.transpose(preprocess_input(np.array(image_data, dtype = 'float32')),(2, 0, 1)), 0)  # 对输入图像进行预处理
+
+        with torch.no_grad():
+            image_ = torch.from_numpy(image_data)  # 转化为tensor形式
+            image_ = image_.to(device)
+            
+            outputs = self.model(image_)
+            # 根据上述网络输出结果调整anchor框
+            outputs = self.bbox_util.decode_box(outputs)
+            
+            # 进行非极大值抑制处理
+            results = self.bbox_util.non_max_suppression(torch.cat(outputs, 1), self.num_classes, image_shape, self.confidence, self.nms_iou)
+            
+            if results[0] is None:
+                return image
+            
+            top_label = np.array(results[0][:, 6], dtype = 'int32')  # 预测类别
+            top_conf = results[0][:, 4] * results[0][:, 5]  # 预测置信率
+            top_boxes = results[0][:, :4]  # 预测框位置 (num_bbox, (ymin, xmin, ymax, xmax))
+
+            for index, class_id in list(enumerate(top_label)):
+                predicted_class = self.class_names[int(class_id)]  # 取出预测类别名称
+
+                box = top_boxes[index]  # 预测框的位置信息 (ymin, xmin, ymax, xmax)
+                score = str(top_conf[index]) # 预测框的置信度
+
+                ymin, xmin, ymax, xmax = box  # 取出坐标详细信息
+
+                f.write("%s %s %s %s %s %s\n"%(predicted_class, score[:6], str(int(xmin)), str(int(ymin)), str(int(xmax)), str(int(ymax))))
+            
+            f.close()
+            return 
+                
+
+
+
+
+
+
