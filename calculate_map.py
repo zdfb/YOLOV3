@@ -24,7 +24,7 @@ class Calculate_mAP():
         # 取出每张图片的id
         self.image_ids = open(os.path.join(self.VOCdevkit_path, 'VOC2007/ImageSets/Main/test.txt')).read().strip().split()
   
-        # 创建原图标签信息，预测信息及图片选项存储路径
+        # 创建原图标签信息，预测信息及图片路径
         if not os.path.exists(self.map_out_path):
             os.makedirs(self.map_out_path)
         if not os.path.exists(os.path.join(self.map_out_path, 'ground-truth')):
