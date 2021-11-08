@@ -140,10 +140,3 @@ class YOLO(object):
             
             f.close()
             return 
-                
-
-
-
-
-
-
