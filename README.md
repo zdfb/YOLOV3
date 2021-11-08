@@ -19,16 +19,16 @@
 标签文件放在VOCdevkit文件夹下的VOC2007文件夹下的Annotation中。
 图片文件放在VOCdevkit文件夹下的VOC2007文件夹下的JPEGImages中。
 ### 2. 聚类生成anchors
-修改tools/anchors_cluster.py文件内数据集指向根目录，运行：
+修改utils/anchors_cluster.py文件内数据集指向根目录，运行：
 ``` bash
-cd tools
+cd utils
 python anchors_cluster.py
 ```
 将生成的anchors复制在model_data/yolo_anchors.txt内。若数据集规模较小，直接使用默认anchors参数。
 ### 3. 划分数据集并生成YOLO格式的标签
-在model_data文件夹下新建name_classes.txt文件，用于存放类别信息。修改tools/voc_annotation.py文件下classes_path的指向，运行：
+在model_data文件夹下新建name_classes.txt文件，用于存放类别信息。修改utils/voc_annotation.py文件下classes_path的指向，运行：
 ``` bash
-cd tools
+cd utils
 python voc_annotation.py
 ```
 生成的数据集划分及标签文件均存放在VOCdevkit\VOC2007\ImageSets\Main文件夹下。
@@ -43,6 +43,11 @@ python train.py
 ``` bash
 python predict_images.py
 ```
+## 获取模型mAP
+运行：
+ ``` bash
+ python calculate_map.py
+ ```
 ## 测试视频
 修改utils/utils_yolo.py文件中的model_path及classes_path，指向训练好的模型及类别信息。
 在predict_images.py文件下输入图片路径，运行：
