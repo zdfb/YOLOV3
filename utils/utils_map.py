@@ -186,21 +186,3 @@ def get_map(MINOVERLAP, path='./map_out'):
     print(text)
 
     shutil.rmtree(temp_files)
-
-
-
-        
-
-
-
-
-    
-
-
-
-        
-        
-
-
-
-    
