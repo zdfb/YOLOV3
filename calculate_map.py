@@ -40,7 +40,7 @@ class Calculate_mAP():
         # 生成测试集的预测结果
         print(" Get predict results.")
         for image_id in tqdm(self.image_ids):  # 获取每张图像id
-            image_path = os.path.join(self.VOCdevkit_path, 'VOC2007/JPEGImages/' + image_id + '.png')  # 获取每张图像的路径
+            image_path = os.path.join(self.VOCdevkit_path, 'VOC2007/JPEGImages/' + image_id + '.jpg')  # 获取每张图像的路径
             image = Image.open(image_path)  
             yolo.get_map_txt(image_id, image, self.map_out_path)  # 获取预测结果并写入txt文件中
         print(" Get predict results done!")
