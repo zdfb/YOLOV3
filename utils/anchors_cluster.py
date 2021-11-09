@@ -23,6 +23,9 @@ def load_dataset():
 
         height = int(tree.findtext("./size/height"))  # 获取图片高度
         width = int(tree.findtext("./size/width"))  # 获取图片宽度
+     
+        if height == 0 or width == 0:
+            continue
 
         for obj in tree.iter("object"):
 
