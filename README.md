@@ -19,14 +19,14 @@
 标签文件放在VOCdevkit文件夹下的VOC2007文件夹下的Annotations中。
 图片文件放在VOCdevkit文件夹下的VOC2007文件夹下的JPEGImages中。
 ### 2. 聚类生成anchors
-修改utils/anchors_cluster.py文件内数据集指向根目录，运行：
+在model_data文件夹下新建name_classes.txt文件，写入自己数据集的类别信息。修改utils/anchors_cluster.py文件内数据集指向根目录，运行：
 ``` bash
 cd utils
 python anchors_cluster.py
 ```
 将生成的anchors复制在model_data/yolo_anchors.txt内。若数据集规模较小，直接使用默认anchors参数。
 ### 3. 划分数据集并生成YOLO格式的标签
-在model_data文件夹下新建name_classes.txt文件，用于存放类别信息。修改utils/voc_annotation.py文件下classes_path的指向，运行：
+修改utils/voc_annotation.py文件下classes_path的指向，运行：
 ``` bash
 cd utils
 python voc_annotation.py
