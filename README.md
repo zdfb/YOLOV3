@@ -24,7 +24,7 @@
 cd utils
 python anchors_cluster.py
 ```
-将生成的anchors复制在model_data/yolo_anchors.txt内。若数据集规模较小，直接使用默认anchors参数。
+将生成的anchors按照原格式填入model_data/yolo_anchors.txt内。若数据集规模较小，直接使用默认anchors参数。
 ### 3. 划分数据集并生成YOLO格式的标签
 修改utils/voc_annotation.py文件下classes_path的指向，运行：
 ``` bash
