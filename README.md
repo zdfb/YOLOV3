@@ -44,7 +44,7 @@ python train.py
 python predict_images.py
 ```
 ## 获取模型mAP
-运行：
+修改calculate_map.py文件中的classes_path,运行：
  ``` bash
  python calculate_map.py
  ```
