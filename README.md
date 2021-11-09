@@ -16,7 +16,7 @@
 
 ## 训练自己的数据集
 ### 1. 按照VOC格式准备数据集
-标签文件放在VOCdevkit文件夹下的VOC2007文件夹下的Annotation中。
+标签文件放在VOCdevkit文件夹下的VOC2007文件夹下的Annotations中。
 图片文件放在VOCdevkit文件夹下的VOC2007文件夹下的JPEGImages中。
 ### 2. 聚类生成anchors
 修改utils/anchors_cluster.py文件内数据集指向根目录，运行：
