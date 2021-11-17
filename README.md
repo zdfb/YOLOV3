@@ -26,9 +26,8 @@ python anchors_cluster.py
 ```
 将生成的anchors按照原格式填入model_data/yolo_anchors.txt内。若数据集规模较小，直接使用默认anchors参数。
 ### 3. 划分数据集并生成YOLO格式的标签
-修改utils/voc_annotation.py文件下classes_path的指向，运行：
+修改voc_annotation.py文件下classes_path的指向，运行：
 ``` bash
-cd utils
 python voc_annotation.py
 ```
 生成的数据集划分及标签文件均存放在VOCdevkit\VOC2007\ImageSets\Main文件夹下。
